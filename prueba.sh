@@ -1,26 +1,17 @@
 #!/usr/bin/env bash
 
-# Ruta de la carpeta con las imágenes
-carpeta="./imagenes"
 
-# Obtener la lista de nombres de archivos válidos
-#archivos_validos=$(ls "$carpeta" | grep -E '')
-
-#echo "$archivos_validos" > texto_pruebas.txt
-
-# Imprimir la lista de nombres de archivos válidos
-#echo "Nombres de archivos válidos:"
-#for archivo in $archivos_validos; do
-# ruta_archivo="$carpeta/$archivo"
-#  echo "$archivo"
-#done
+if [ ! -d "imagenes_procesadas" ]
+then
+	mkdir -p "imagenes_procesadas"
+fi
 
 for imagen in imagenes/*
 do
 	NOMBRE=$(basename "$imagen")
 	if [[ $NOMBRE =~ (^[A-Z][a-z]+ [A-Z][a-z]+$) ]]
 	then
-	echo $NOMBRE
+	convert "imagenes/$NOMBRE" -gravity center -resize 512x512+0+0 -extent 512x512 "imagenes_procesadas/$NOMBRE" 
 	#AQUI: PROCESAR Y GUARDAR EN /imagenes_procesadas
 	fi
 done
