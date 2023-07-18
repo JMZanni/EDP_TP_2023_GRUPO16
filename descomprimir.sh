@@ -27,4 +27,8 @@ if [ $? -ne 0 ]; then
 fi
 echo "Archivo descomprimido correctamente!"
 
+#Borramos la carpeta comprimida y el archivo checksum
+rm imagenes.tar.gz
+rm checksum.txt
+
 exit 0
