@@ -1,10 +1,10 @@
 #! /usr/bin/env bash
 
-#Verificamos que se hayan proporcionado los 2 argumentos de archivo
-if [ $# -ne 2 ]; then
-    echo "Se deben proporcionar dos archivos como argumentos, archivo comprimido y checksum"
-    exit 1
-fi
+#Verificamos que se hayan proporcionado los 2 argumentos de archivo(Esto ya no es posible que pase)
+#if [ $# -ne 2 ]; then
+#    echo "Se deben proporcionar dos archivos como argumentos, archivo comprimido y checksum"
+#    exit 1
+#fi
 
 ARCHIVO_COMPRIMIDO="$1"
 CHECKSUM="$2"

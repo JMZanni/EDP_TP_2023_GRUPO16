@@ -10,20 +10,28 @@ function menu  {
 	echo "4-Comprimir"
 	echo "5-Salir"
 }
-
 function opcion1 {
-	case $1 in
-	0)
-	read -p "Introduzca la cantidad de imagenes a generar: " n
-	bash "generar.sh" $n
-	BANDERA=1
-	menu
-	;;
-	1) echo "Ya se han generado imagenes" ;;
-	2) echo "Ya se han generado y descomprimido imagenes";;
-	3) echo "Ya se han generado y procesado imagenes";;
-	4) echo "Ya se han generado y comprimido imagenes";;
-	esac
+    case $1 in
+        0)
+            while true
+	    do
+                read -p "Introduzca la cantidad de imágenes a generar: " n
+                if [[ $n =~ ^[0-9]+$ ]] && [ $n -gt 0 ]
+		then
+                    bash "generar.sh" $n
+                    BANDERA=1
+                    menu
+                    break
+                else
+                    echo "El valor ingresado no es un número entero positivo. Intenta nuevamente."
+                fi
+            done
+            ;;
+        1) echo "Ya se han generado imágenes" ;;
+        2) echo "Ya se han generado y descomprimido imágenes";;
+        3) echo "Ya se han generado y procesado imágenes";;
+        4) echo "Ya se han generado y comprimido imágenes";;
+    esac
 
 }
 
