@@ -2,12 +2,22 @@
 
 BANDERA=0
 
+function menu  {
+	echo "Elija una Accion"
+	echo "1-Generar"
+	echo "2-Descomprimir"
+	echo "3-Procesar"
+	echo "4-Comprimir"
+	echo "5-Salir"
+}
+
 function opcion1 {
 	case $1 in
 	0)
 	read -p "Introduzca la cantidad de imagenes a generar: " n
 	bash "generar.sh" $n
 	BANDERA=1
+	menu
 	;;
 	1) echo "Ya se han generado imagenes" ;;
 	2) echo "Ya se han generado y descomprimido imagenes";;
@@ -24,6 +34,7 @@ function opcion2 {
 	CHECKSUM="checksum.txt"
 	bash "descomprimir.sh" $ARCHIVO $CHECKSUM
 	BANDERA=2
+	menu
 	;;
 	0) echo "No se han generado imagenes previamente" ;;
 	2) echo "Ya se han generado y descomprimido imagenes";;
@@ -36,7 +47,9 @@ function opcion3 {
 	case $1 in
 	2)
 	bash "procesar.sh"
+	echo "Imagenes Procesadas"
 	BANDERA=3
+	menu
 	;;
 	0) echo "No se han generado imagenes previamente";;
         1) echo "No se han descomprimido imagenes previamente";;
@@ -50,6 +63,7 @@ function opcion4 {
 	3)
 	bash "comprimir.sh"
 	BANDERA=4
+	menu
 	;;
         0) echo "No se han generado imagenes previamente";;
         1) echo "No se han descomprimido imagenes previamente";;
@@ -69,7 +83,6 @@ do
         [ $REPLY == 3 ] && opcion3 $BANDERA && continue
         [ $REPLY == 4 ] && opcion4 $BANDERA && continue
 	[ $REPLY == 5 ] && echo "Ha salido del script" && break
-	echo "1-Generar/2-Descomprimir/3-Procesar/4-Comprimir/5-Salir"
 done
 
 
